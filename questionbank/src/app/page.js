@@ -5,7 +5,7 @@ import { ChevronRight, Brain, Trophy, RotateCcw, CheckCircle, XCircle, X, Chevro
 
 
 const QuestionBankUI = () => {
-  const [currentStep, setCurrentStep] = useState('setup'); // setup, quiz, results
+  const [currentStep, setCurrentStep] = useState('setup');
   const [showModal, setShowModal] = useState(false);
   const [subject, setSubject] = useState('');
   const [level, setLevel] = useState('');
@@ -23,8 +23,6 @@ const QuestionBankUI = () => {
   ];
 
 
-
-  // Mock AI question generation
  const generateQuestions = async () => {
   if (!subject || !level || !examType) return;
 
@@ -40,7 +38,7 @@ const QuestionBankUI = () => {
         subject: subject,
         level:level,
         examType:examType,
-        mode: 'quiz' // or another mode name based on your backend logic
+        mode: 'quiz'
       })
     });
 
@@ -52,7 +50,6 @@ const QuestionBankUI = () => {
 
       const parsedQuestions = JSON.parse(data.improvedScript);
 
-      // Map backend response to frontend expected format
       const parsedWithIds = parsedQuestions.map((q) => ({
         question: q.question,
         options: q.options,
@@ -146,6 +143,7 @@ const QuestionBankUI = () => {
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                   placeholder="Enter subject (e.g., Mathematics, Physics, Computer Science)"
+                  style={{color:'black'}}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
                 />
               </div>
@@ -158,6 +156,7 @@ const QuestionBankUI = () => {
                   <select
                     value={level}
                     onChange={(e) => setLevel(e.target.value)}
+                    style={{color:'black'}}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all appearance-none bg-white pr-10"
                   >
                     <option value="">Select difficulty level</option>
@@ -180,6 +179,7 @@ const QuestionBankUI = () => {
                   value={examType}
                   onChange={(e) => setExamType(e.target.value)}
                   placeholder="Enter exam type (e.g., JEE, NEET, SAT, Interview)"
+                  style={{color:'black'}}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
                 />
               </div>

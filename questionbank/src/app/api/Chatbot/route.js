@@ -1,4 +1,4 @@
-// /app/api/chatBot/route.js
+
 import { NextResponse } from 'next/server';
 
 export async function POST(req) {
@@ -9,7 +9,6 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    // Define exams that require diagrams
     const examsWithDiagrams = ['JEE', 'NEET', 'OtherExam'];
 
     let diagramInstruction = '';
