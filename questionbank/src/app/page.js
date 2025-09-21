@@ -53,7 +53,7 @@ const QuestionBankUI = () => {
       const parsedWithIds = parsedQuestions.map((q) => ({
         question: q.question,
         options: q.options,
-        correct: q.correctOptionIndex,
+        correct: q.correct_option,
         explanation: q.explanation,
         id: nanoid()
       }));

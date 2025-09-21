@@ -1,4 +1,3 @@
-
 import { NextResponse } from 'next/server';
 
 export async function POST(req) {
@@ -18,7 +17,7 @@ Include diagrams such as Venn diagrams or other relevant illustrations where app
 `;
     }
 
-  const prompt = `
+    const prompt = `
 You are a subject matter expert for Indian government exams.
 
 Generate 10 multiple-choice questions for the following:
@@ -46,16 +45,14 @@ Format everything in the appropriate language based on subject & exam. Output mu
 Return only a **valid JSON array** without any markdown formatting, code block, or extra commentary. Do NOT include triple backticks 
 `;
 
-
-
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    const response = await fetch('https://api.perplexity.ai/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        Authorization: `Bearer ${process.env.PERPLEXITY_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'anthropic/claude-3-haiku',
+        model: 'sonar-pro',
         messages: [
           { role: 'system', content: 'You are a quiz generator assistant.' },
           { role: 'user', content: prompt },
