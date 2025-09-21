@@ -8,6 +8,13 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
+    // Check if API key is configured
+    if (!process.env.PERPLEXITY_API_KEY) {
+      return NextResponse.json({
+        error: 'API key not configured. Please set PERPLEXITY_API_KEY environment variable.'
+      }, { status: 500 });
+    }
+
     const examsWithDiagrams = ['JEE', 'NEET', 'OtherExam'];
 
     let diagramInstruction = '';
@@ -67,7 +74,10 @@ Return only a **valid JSON array** without any markdown formatting, code block, 
 
     return NextResponse.json({ improvedScript: improved });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    console.error('Chatbot API error:', error);
+    return NextResponse.json({
+      error: 'Internal server error',
+      details: error.message
+    }, { status: 500 });
   }
 }
